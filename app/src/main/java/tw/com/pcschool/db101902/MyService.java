@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import java.util.Date;
@@ -25,7 +26,9 @@ public class MyService extends Service {
 
         }
     };
+    LocalBroadcastManager broadcaster;
     public MyService() {
+        broadcaster = LocalBroadcastManager.getInstance(this);
     }
 
     @Override
@@ -49,8 +52,8 @@ public class MyService extends Service {
         handler.removeCallbacks(showTime);
 
         Intent it = new Intent();
-        it.setAction("COUNT5");
-        sendBroadcast(it);
+        it.setAction("CC5");
+        broadcaster.sendBroadcast(it);
         super.onDestroy();
     }
 }
